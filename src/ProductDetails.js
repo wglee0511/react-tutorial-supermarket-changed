@@ -1,6 +1,11 @@
 import React,{useEffect, useState} from "react";
 import {useParams, NavLink, useRouteMatch, Switch, Route} from "react-router-dom";
-import useFetch from "./useFetch"
+import useFetch from "./useFetch";
+import ProductDetailInfo from "./ProductDetailInfo";
+import ProductDetailNutrition from "./ProductDetailNutrition";
+import ProductDetailStorage from "./ProductDetailStorage";
+import Loader from "./Loader";
+
 /*
 Base URL: https://react-tutorial-demo.firebaseio.com/
 Verb: GET
@@ -21,9 +26,8 @@ export default function ProductDetails (props) {
         get(ENDPOINT)
         .then(data => setProductDetails(data))
         .catch(error => console.error(error));
-    },[])
+    },[]);
 
-    console.log(match, productDetails);
 
     return <div className="product-details-layout">
         <div>
@@ -50,11 +54,22 @@ export default function ProductDetails (props) {
                     </li>
 
                 </ul>
+        {isLoading && <Loader />}
+       <Switch>
+            <Route exact path={match.path}>
+                <ProductDetailInfo product={productDetails} />
+            </Route>
+            <Route exact path={`${match.path}/nutrition`}>
+                <ProductDetailNutrition nutrition={productDetails.nutrition} />
+            </Route>
+            <Route exact path={`${match.path}/storage`}>
+                <ProductDetailStorage storage={productDetails.storage} />
+            </Route>
+
+       </Switch>
             </div>
 
         </div>
-
-       
 
 
     </div>;

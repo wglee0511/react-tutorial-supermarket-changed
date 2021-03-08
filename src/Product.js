@@ -29,6 +29,7 @@ export default function Product (props) {
                 <div>
                     <Button className="product-delete">  x</Button>
                 </div>
+                <Button outline>${details.price}</Button>
             </div>
 
         </div>
