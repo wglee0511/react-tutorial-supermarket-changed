@@ -4,7 +4,6 @@ export default function useFetch(url){
     const [isLoading, setLoading] = useState(true);
 
     const get = (endPoint) =>{
-        setLoading(false);
         return (
         new Promise((resolve, reject)=>{
             fetch(url + endPoint)
@@ -25,7 +24,6 @@ export default function useFetch(url){
     
     
     const post = (endPoint, body) =>{
-        setLoading(false);
         return (
             new Promise((resolve, reject)=>{
                 fetch(endPoint, {

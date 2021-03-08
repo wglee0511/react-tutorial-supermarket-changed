@@ -13,3 +13,4 @@ export default function About() {
   <img src="https://res.cloudinary.com/dbfn5lnvx/image/upload/q_auto,w_550/v1607770215/react-tutorial/supermarket/about.jpg" height="275" width="183" class="rounded" alt="" />
 </div>;
 }
+
