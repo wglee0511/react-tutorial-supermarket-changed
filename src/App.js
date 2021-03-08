@@ -7,9 +7,12 @@ import About from "./About.js";
 import Products from "./Products.js";
 import Cart from "./Cart.js";
 import ProductDetails from "./ProductDetails";
+import {AppProvider} from "./AppContext";
 
 function App() {
-  return (<BrowserRouter>
+  return (
+  <AppProvider>
+  <BrowserRouter>
 
     <Navbar />
 
@@ -30,7 +33,8 @@ function App() {
       <ProductDetails />
     </Route>
     </Switch>
-  </BrowserRouter>);
+  </BrowserRouter>
+  </AppProvider>);
 }
 
 export default App;

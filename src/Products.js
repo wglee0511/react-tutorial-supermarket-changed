@@ -20,11 +20,11 @@ export default function Products(props) {
 
 
   return (
-  <div class="products-layout">
+  <div className="products-layout">
     <h1>Products</h1>
     <p>Take a look at our products</p>
     {isLoading && <Loader />}
-    <div class="products-grid">
+    <div className="products-grid">
     {products.map(product => <Product 
       key={product.id}
       details={product} />)}

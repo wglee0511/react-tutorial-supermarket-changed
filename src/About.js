@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function About() {
-  return <div class="about-layout">
+  return <div className="about-layout">
   <div>
     <h1>About Us</h1>
     <p>

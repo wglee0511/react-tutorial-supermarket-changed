@@ -1,10 +1,11 @@
-import React from "react";
+import React,{useContext} from "react";
 import Button from "./Button";
 import {Link} from "react-router-dom";
+import {AppContext} from "./AppContext";
 
 export default function Product (props) {
     const {details} = props;
-
+    const value = useContext(AppContext);
 
     
     return (
@@ -27,9 +28,9 @@ export default function Product (props) {
             </div>
             <div className="product-checkout">
                 <div>
-                    <Button className="product-delete">  x</Button>
+                    <Button className="product-delete" onClick={()=>value.handleProductDelete(details.id)} >x</Button>
                 </div>
-                <Button outline>${details.price}</Button>
+                <Button outline onClick={()=> value.handleProductAdd(details)}>${details.price}</Button>
             </div>
 
         </div>

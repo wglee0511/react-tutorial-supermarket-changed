@@ -2,14 +2,14 @@ import React from "react";
 import {NavLink} from "react-router-dom";
 
 export default function Home() {
-  return <div class="home-layout">
+  return <div className="home-layout">
   <div>
   <h1>Online shopping simplified</h1>
   <p>
     Order your groceries from <em>SuperM</em> with our easy to use app,
     and get your products delivered straight to your doorstep.
   </p>
-  <NavLink exact to="/products" class="btn btn-default">
+  <NavLink exact to="/products" className="btn btn-default">
     Start shopping
   </NavLink>
   </div>
