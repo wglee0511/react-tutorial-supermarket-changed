@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "./Button";
+import {Link} from "react-router-dom";
 
 export default function Product (props) {
     const {details} = props;
@@ -8,6 +9,7 @@ export default function Product (props) {
     
     return (
         <div className="product">
+            <Link to={`/products/${details.id}`} >
             <div className="product-image-container">
                 <img
                 src={details.image}
@@ -17,6 +19,7 @@ export default function Product (props) {
                     <div className="product-quantity">0</div>
                 </div>
             </div>
+            </Link>
 
             <div className="product-info" >
                 <h3>{details.name}</h3>
