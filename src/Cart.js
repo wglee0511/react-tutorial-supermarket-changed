@@ -1,13 +1,39 @@
-import React,{useContext} from "react";
+import React,{useContext, useState} from "react";
 import {AppContext} from "./AppContext";
-
+import {loadStripe} from '@stripe/stripe-js';
+import {STRIPE_KEY} from "./KEYS";
+import Button from "./Button";
+import Input from "./Input";
 
 
 export default function Cart() {
+  const [email, setEmail] = useState("");
   const value = useContext(AppContext);
   const cart = value.cart;
   const totalPrice = value.totalPrice;
+  const stripePromise = loadStripe(STRIPE_KEY);
+
+  const lineItems = cart.map(item => {
+    return {
+      price: item.price_id,
+      quantity: item.quantity
+    }
+  });
   
+  // Need new api
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    stripePromise.then(stripe=> stripe.redirectToCheckout({
+      lineItems: lineItems,
+      mode: "payment",
+      successUrl: "https://ace131c0-061a-4b2d-a24d-9438652564c0-3000.apps.codespaces.githubusercontent.com/",
+      cancelUrl: "https://ace131c0-061a-4b2d-a24d-9438652564c0-3000.apps.codespaces.githubusercontent.com/#/cart",
+      customerEmail: email
+    })).then((response) => {
+      console.log(response.error);
+    }).catch(error=> console.error(error));
+    
+  }
   
   return <div class="cart-layout">
     <div>
@@ -47,5 +73,13 @@ export default function Cart() {
       </table>
       }
     </div>
+    {cart.length > 0 && <form className="pay-form" onSubmit={handleSubmit}>
+      <p>Enter your email and then click on pay and your products will be
+    delivered to you on the same day!</p>
+    <Input onChange={(event)=> setEmail(event.target.value)} autoComplete="email" placeholder="Email" type="email" />
+    <Button type="submit">Pay</Button>
+    </form>}
+
+
   </div>;
 }

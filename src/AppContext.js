@@ -6,7 +6,7 @@ export function AppProvider (props) {
     const [cart, setCart] = useState([]);
 
     useEffect(()=>{
-        console.log("Added to cart")
+        console.log("Added to cart");
         console.log(cart);
     },[cart])
 
