@@ -5,19 +5,22 @@ export default function useFetch(url){
 
     const get = (endPoint) =>{
         return (
-        new Promise((resolve, reject)=>{
+            new Promise((resolve, reject)=>{ 
             fetch(url + endPoint)
             .then(response=> response.json())
             .then(data =>{
                 if(!data){
+                    setLoading(false);
                     console.log(data);
                     return reject(data);
                 }
+                setLoading(false);
                 resolve(data);
             })
-            .catch(error => console.error(error))
-            .finally(setLoading(false))
-            
+            .catch(error => {
+                setLoading(false);
+                console.error(error)
+            })
         }) 
         )
     }
@@ -36,13 +39,18 @@ export default function useFetch(url){
                 .then(response => response.json())
                 .then(data => {
                     if(!data){
+                        setLoading(false);
                         console.log(data)
                         return reject(data);
                     }
+                    setLoading(false);
                     resolve(data);
                 })
-                .catch(error => console.error(error) )
-                .finally(setLoading(false))
+                .catch(error =>{ 
+                    setLoading(false);
+                    console.error(error) 
+                })
+  
             })
             )
                 

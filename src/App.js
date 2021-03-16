@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import {BrowserRouter, Switch, Route} from "react-router-dom";
+import {HashRouter as Router, Switch, Route} from "react-router-dom";
 import Navbar from "./Navbar.js";
 import Home from "./Home.js";
 import About from "./About.js";
@@ -12,7 +12,7 @@ import {AppProvider} from "./AppContext";
 function App() {
   return (
   <AppProvider>
-  <BrowserRouter>
+  <Router>
 
     <Navbar />
 
@@ -33,7 +33,7 @@ function App() {
       <ProductDetails />
     </Route>
     </Switch>
-  </BrowserRouter>
+  </Router>
   </AppProvider>);
 }
 
