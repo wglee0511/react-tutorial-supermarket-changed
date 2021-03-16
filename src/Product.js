@@ -6,6 +6,10 @@ import {AppContext} from "./AppContext";
 export default function Product (props) {
     const {details} = props;
     const value = useContext(AppContext);
+    const cart = value.cart;
+
+    const itemArr = cart.find(item => item.id === details.id);
+    const quantity = itemArr ? itemArr.quantity : 0;
 
     
     return (
@@ -17,7 +21,7 @@ export default function Product (props) {
                 className="product-image" 
                 width="100" height="100" alt={details.name} />
                 <div className="product-quantity-container" >
-                    <div className="product-quantity">0</div>
+                    <div className="product-quantity">{quantity}</div>
                 </div>
             </div>
             </Link>

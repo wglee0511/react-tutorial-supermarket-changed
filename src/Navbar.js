@@ -1,7 +1,10 @@
-import React from "react";
+import React,{useContext} from "react";
 import {NavLink} from "react-router-dom";
+import {AppContext} from "./AppContext";
 
 export default function Navbar() {
+  const value = useContext(AppContext);
+  console.log(value);
   return (
     <nav className="navbar">
       <NavLink exact to="/" className="nav-brand">
@@ -25,7 +28,7 @@ export default function Navbar() {
         </li>
         <li>
           <NavLink exact to="/cart" className="nav-item nav-cart btn btn-accent">
-            Cart (0)
+            Cart ({value.cartNum})
           </NavLink>
         </li>
       </ul>

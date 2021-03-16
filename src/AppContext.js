@@ -38,11 +38,31 @@ export function AppProvider (props) {
 
     }
     const handleProductDelete = (id) =>{
-        console.log("Del");
-        
+        const findArr = cart.find(item => item.id === id);
+        if(findArr){
+        if(findArr.quantity > 1){
+                const upDateCart = cart.map(item => {
+                    if (item.id === findArr.id) {
+                        return {
+                            ...item,
+                            quantity: item.quantity - 1
+                        }
+                    } return item
+                })
+                setCart(upDateCart)
+            } else if (findArr.quantity === 1) {
+            const upDateCart = cart.filter(item => item.id !== id)
+            setCart(upDateCart);
+        }
+    } else {
+        return ;
+    }
     };
+    const cartNum = cart.reduce((total, item)=> total + item.quantity, 0)
 
     const value = {
+        cart,
+        cartNum,
         handleProductAdd,
         handleProductDelete
     };
